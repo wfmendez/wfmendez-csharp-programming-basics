@@ -1,43 +1,50 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Enter a list of numbers, type 0 when finished.");
-        int addNumber = 1;
-        int sum = 0;
         List<int> numbers = new List<int>();
-        
-        while (addNumber != 0)
+        bool addNumber = true;
+        Console.WriteLine("Enter a list of numbers, type 0 when finished.");
+
+        while (addNumber)
         {
-            Console.WriteLine("Enter number: "); 
-            addNumber = int.Parse(Console.ReadLine());
-            sum += addNumber;
-            if (addNumber != 0)
+            Console.Write("Enter number: ");
+            int number = int.Parse(Console.ReadLine());
+
+            if (number == 0)
             {
-                numbers.Add(addNumber);
+                addNumber = false;
             }
+            else
+            {
+                numbers.Add(number);
+            }
+        }
+
+        int sum = 0;
+        foreach (int number in numbers)
+        {
+            sum += number;
         }
 
         Console.WriteLine($"The sum is: {sum}");
-        
-        int count = numbers.Count;
-        int average = sum / count;
+
+        float average = ((float)sum) / numbers.Count;
         Console.WriteLine($"The average is: {average}");
 
-        int largestNumber = 0;
+        int max = numbers[0];
 
         foreach (int number in numbers)
         {
-            if (number > largestNumber)
+            if (number > max)
             {
-                largestNumber = number;
+                max = number;
             }
         }
 
-        Console.WriteLine($"The largest number is: {largestNumber}");
+        Console.WriteLine($"The max is: {max}");
     }
 }
