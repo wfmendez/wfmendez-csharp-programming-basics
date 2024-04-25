@@ -1,54 +1,48 @@
 using System;
+using System.Formats.Asn1;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Random randomGenerator = new Random();
-        int magicNumber = randomGenerator.Next(1, 100);
+        bool playAgain = true;
 
-        Console.WriteLine("What is your guess?");
-        int guessNumber = int.Parse(Console.ReadLine());
-        int attemps = 1;
-        int endGame = 0;
-
-        while (endGame == 0)
+        while (playAgain)
         {
-            while (magicNumber != guessNumber)
-            {
+            Random randomGenerator = new Random();
+            int magicNumber = randomGenerator.Next(1, 101);
 
-                if (guessNumber < magicNumber)
+            int guessNumber = -1;
+            int guesses = 0;
+
+            while (guessNumber != magicNumber)
+            {
+                Console.Write("What is your guess? ");
+                guessNumber = int.Parse(Console.ReadLine());
+                guesses++;
+
+                if (magicNumber > guessNumber)
                 {
                     Console.WriteLine("Higher");
                 }
-
-                else if (guessNumber > magicNumber)
+                else if (magicNumber < guessNumber)
                 {
                     Console.WriteLine("Lower");
                 }
+                else
+                {
+                    Console.WriteLine($"You guessed it! Your guesses are {guesses}");
+                }
 
-                attemps += 1;
-
-                Console.WriteLine("What is your guess?");
-                guessNumber = int.Parse(Console.ReadLine());
             }
+            Console.WriteLine("Do you want to play again? (Yes/No) ");
+            string answer = Console.ReadLine().ToLower();
 
-            Console.WriteLine("You guessed it!");
-            Console.WriteLine($"Total guess attemps: {attemps}");
-
-            Console.WriteLine("Do you want to play again? YES/NO");
-            string playAgain = Console.ReadLine();
-            
-            if (playAgain == "YES")
+            if (answer != "yes")
             {
-                magicNumber = randomGenerator.Next(1, 100);
-            }
-            else if (playAgain == "NO")
-            {
-                endGame = 1;
+                playAgain = false;
             }
         }
-        Console.WriteLine("END GAME");
-    }
 
+    }
 }
