@@ -1,62 +1,64 @@
 using System;
-using System.Reflection.Metadata;
 
 class Program
 {
     static void Main(string[] args)
     {
-        string letter;
-        string sign = "";
-
-        Console.WriteLine("Hello, please type your grade:");
-        int grade = int.Parse(Console.ReadLine());
-        
+        Console.Write("What is your grade percentage? ");
+        string valueFromUser = Console.ReadLine();
+        int grade = int.Parse(valueFromUser);
+        string gradeLetter = "N/A";
 
         if (grade >= 90)
         {
-            letter = "A";
+            gradeLetter = "A";
         }
-
         else if (grade >= 80)
         {
-            letter = "B";
+            gradeLetter = "B";
         }
-
         else if (grade >= 70)
         {
-            letter = "C";
+            gradeLetter = "C";
         }
-
         else if (grade >= 60)
         {
-            letter = "D";
+            gradeLetter = "D";
         }
-
         else
         {
-            letter = "F";
+            gradeLetter = "F";
         }
 
-        int lastDigit = grade / 10;
+        int lastDigit = grade % 10;
+        string sign = "";
 
         if (lastDigit >= 7)
         {
             sign = "+";
         }
-        
-        else if (lastDigit <= 3)
+        else if (lastDigit < 3)
         {
             sign = "-";
         }
 
-        Console.WriteLine($"Your grade is {letter}{sign}");
+        if (gradeLetter == "A" && sign == "+")
+        {
+            sign = "";
+        }
+        else if (gradeLetter == "F")
+        {
+            sign = "";
+        }
 
+        Console.WriteLine($"Your grade letter is {gradeLetter}{sign}");
         if (grade >= 70)
         {
-            Console.WriteLine("Congratulations! Your pass the semester.");
+            Console.WriteLine("Congratulatios you pass the class!!!");
         }
-        else {
-            Console.WriteLine("Sorry, you don't pass the semester");
+        else
+        {
+            Console.WriteLine("Sorry you don't pass the class, we encourage to try it again in the next semester");
         }
     }
 }
