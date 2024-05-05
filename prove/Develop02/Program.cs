@@ -48,7 +48,7 @@ internal class Program
                     // Save the journal to a file
                     case 3:
                         Console.WriteLine();
-                        Console.Write("Enter the file name to save: ");
+                        Console.Write("Enter the file name to save (Example: journal.txt): ");
                         string saveFileName = Console.ReadLine();
                         journal.SaveToFile(saveFileName);
                         Console.WriteLine("Journal saved to file successfully!");
@@ -58,7 +58,7 @@ internal class Program
                     // Load the journal from a file
                     case 4:
                         Console.WriteLine();
-                        Console.Write("Enter the file name to load: ");
+                        Console.Write("Enter the file name to load (Example: journal.txt): ");
                         string loadFileName = Console.ReadLine();
                         journal.LoadFromFile(loadFileName);
                         Console.WriteLine("Journal loaded from file successfully!");
